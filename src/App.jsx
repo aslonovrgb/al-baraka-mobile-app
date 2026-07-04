@@ -226,7 +226,7 @@ function App() {
   const isArabic = language === "ar";
   const t = copy[language];
   const activePage = routeToPage[route] ?? "home";
-  const isSignIn = route === "/signin";
+  const isSignIn = route === "/" || route === "/signin";
 
   useEffect(() => {
     const handlePopState = () =>
@@ -234,12 +234,6 @@ function App() {
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
-
-  useEffect(() => {
-    if (route === "/") {
-      navigate("/signin", { replace: true });
-    }
-  }, [route]);
 
   useEffect(() => {
     document.documentElement.lang = language;
