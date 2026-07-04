@@ -126,6 +126,11 @@ const copy = {
     signOut: "Sign out",
     showBalance: "Show balance",
     hideBalance: "Hide balance",
+    balanceDetails: "Balance details",
+    salaryPosted: "Salary posted",
+    spentAfterSalary: "Spent after salary",
+    currentAvailable: "Current available",
+    exchangeRate: "Wise rate",
     transferReady: "Transfer preview ready",
     transferPreviewTitle: "Transfer to Phu Quoc Travel",
     transferPreviewSubtitle: "Jul 4, 2026 • 14:58 ICT • Phu Quoc, Vietnam",
@@ -201,6 +206,11 @@ const copy = {
     signOut: "تسجيل الخروج",
     showBalance: "إظهار الرصيد",
     hideBalance: "إخفاء الرصيد",
+    balanceDetails: "تفاصيل الرصيد",
+    salaryPosted: "إيداع الراتب",
+    spentAfterSalary: "المصروفات بعد الراتب",
+    currentAvailable: "الرصيد الحالي",
+    exchangeRate: "سعر Wise",
     transferReady: "معاينة التحويل جاهزة",
     transferPreviewTitle: "تحويل إلى Phu Quoc Travel",
     transferPreviewSubtitle: "4 يوليو 2026 • 14:58 بتوقيت فيتنام • فو كوك",
@@ -243,10 +253,19 @@ const copy = {
 
 const account = {
   balance: {
+    usd: "$8,927.63 USD",
+    syp: "98,735,759 SYP",
+  },
+  hiddenBalance: "••••••",
+  salaryDeposit: {
     usd: "$9,222.78 USD",
     syp: "102,000,000 SYP",
   },
-  hiddenBalance: "••••••",
+  spentAfterSalary: {
+    usd: "-$295.15 USD",
+    syp: "-3,264,241 SYP",
+  },
+  exchangeRate: "1 USD = 11,059.60 SYP",
   cardBalance: {
     usd: "$2,802.99 USD",
     syp: "31,000,000 SYP",
@@ -340,20 +359,6 @@ const transactions = [
     tone: "debit",
   },
   {
-    id: "damascus-market",
-    title: "Damascus Market",
-    arTitle: "سوق دمشق",
-    subtitle: "Groceries",
-    arSubtitle: "مشتريات يومية",
-    date: "Jul 3, 2026 • 19:20",
-    arDate: "3 يوليو 2026 • 19:20",
-    amount: {
-      usd: "-$67.81 USD",
-      syp: "-750,000 SYP",
-    },
-    tone: "debit",
-  },
-  {
     id: "salary-deposit",
     title: "Salary Deposit",
     arTitle: "إيداع راتب",
@@ -376,8 +381,22 @@ const transactions = [
     date: "Jun 30, 2026 • 21:14",
     arDate: "30 يونيو 2026 • 21:14",
     amount: {
-      usd: "-$14.01 USD",
+      usd: "-$14.02 USD",
       syp: "-155,000 SYP",
+    },
+    tone: "debit",
+  },
+  {
+    id: "damascus-market",
+    title: "Damascus Market",
+    arTitle: "سوق دمشق",
+    subtitle: "Groceries",
+    arSubtitle: "مشتريات يومية",
+    date: "Jun 30, 2026 • 18:20",
+    arDate: "30 يونيو 2026 • 18:20",
+    amount: {
+      usd: "-$67.81 USD",
+      syp: "-750,000 SYP",
     },
     tone: "debit",
   },
@@ -886,6 +905,7 @@ function GreetingBlock({ t }) {
 }
 
 function BalanceCard({ balanceVisible, setBalanceVisible, t }) {
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const BalanceIcon = balanceVisible ? Eye : EyeOff;
 
   return (
@@ -914,14 +934,48 @@ function BalanceCard({ balanceVisible, setBalanceVisible, t }) {
           </button>
           <button
             type="button"
-            className="grid h-10 w-10 place-items-center rounded-full bg-white/[0.1] text-bank-gold"
-            aria-label="More balance options"
+            className={`grid h-10 w-10 place-items-center rounded-full text-bank-gold transition ${
+              detailsOpen ? "bg-white/[0.2] ring-2 ring-bank-gold/70" : "bg-white/[0.1]"
+            }`}
+            aria-expanded={detailsOpen}
+            aria-label={t.balanceDetails}
+            onClick={() => setDetailsOpen((open) => !open)}
           >
             <MoreHorizontal className="h-5 w-5" />
           </button>
         </div>
       </div>
+      {detailsOpen && (
+        <div className="mt-4 rounded-[22px] border border-white/[0.12] bg-white/[0.08] p-3">
+          <BalanceDetailRow
+            label={t.salaryPosted}
+            value={moneyPair(account.salaryDeposit, balanceVisible)}
+          />
+          <BalanceDetailRow
+            label={t.spentAfterSalary}
+            value={moneyPair(account.spentAfterSalary, balanceVisible)}
+          />
+          <BalanceDetailRow
+            label={t.currentAvailable}
+            value={moneyPair(account.balance, balanceVisible)}
+          />
+          <div className="mt-3 rounded-2xl bg-bank-gold/[0.12] px-3 py-2 text-xs font-semibold text-bank-gold">
+            {t.exchangeRate}: <bdi>{account.exchangeRate}</bdi>
+          </div>
+        </div>
+      )}
     </section>
+  );
+}
+
+function BalanceDetailRow({ label, value }) {
+  return (
+    <div className="flex items-center justify-between gap-3 py-2 text-xs">
+      <span className="text-white/[0.62]">{label}</span>
+      <span className="text-end font-semibold text-white">
+        <bdi>{value}</bdi>
+      </span>
+    </div>
   );
 }
 
