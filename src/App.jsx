@@ -130,7 +130,6 @@ const copy = {
     usdToSyp: "USD to SYP",
     sypToUsd: "SYP to USD",
     availableBalance: "Available balance",
-    rateNote: "Indicative demo rate",
     transferReady: "Transfer preview ready",
     transferPreviewTitle: "Transfer to Phu Quoc Travel",
     transferPreviewSubtitle: "Jul 4, 2026 • 14:58 ICT • Phu Quoc, Vietnam",
@@ -210,7 +209,6 @@ const copy = {
     usdToSyp: "الدولار إلى الليرة",
     sypToUsd: "الليرة إلى الدولار",
     availableBalance: "الرصيد المتاح",
-    rateNote: "سعر تقريبي للعرض",
     transferReady: "معاينة التحويل جاهزة",
     transferPreviewTitle: "تحويل إلى Phu Quoc Travel",
     transferPreviewSubtitle: "4 يوليو 2026 • 14:58 بتوقيت فيتنام • فو كوك",
@@ -952,9 +950,6 @@ function BalanceCard({ balanceVisible, setBalanceVisible, t }) {
             label={t.availableBalance}
             value={moneyPair(account.balance, balanceVisible)}
           />
-          <div className="mt-3 rounded-2xl bg-bank-gold/[0.12] px-3 py-2 text-xs font-semibold text-bank-gold">
-            {t.rateNote}
-          </div>
         </div>
       )}
     </section>
