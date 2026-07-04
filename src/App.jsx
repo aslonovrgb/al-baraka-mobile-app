@@ -128,9 +128,39 @@ const copy = {
     hideBalance: "Hide balance",
     transferReady: "Transfer preview ready",
     transferPreviewTitle: "Transfer to Phu Quoc Travel",
-    transferPreviewSubtitle: "Today, 16:58 • Phu Quoc, Vietnam",
+    transferPreviewSubtitle: "Jul 4, 2026 • 14:58 ICT • Phu Quoc, Vietnam",
     transferPreviewNote: "Review details before continuing.",
     previewAmount: "Preview amount",
+    actionPreviews: [
+      {
+        status: "Transfer preview ready",
+        title: "Transfer to Phu Quoc Travel",
+        subtitle: "Jul 4, 2026 • 14:58 ICT • Phu Quoc, Vietnam",
+        amountLabel: "Transfer amount",
+        note: "Review beneficiary and conversion details before continuing.",
+      },
+      {
+        status: "Bill payment ready",
+        title: "Pay Vietnam hotel invoice",
+        subtitle: "Jul 4, 2026 • 13:40 ICT • Phu Quoc, Vietnam",
+        amountLabel: "Bill amount",
+        note: "Hotel invoice is queued for approval.",
+      },
+      {
+        status: "Top up ready",
+        title: "Top up Vietnam mobile data",
+        subtitle: "Jul 3, 2026 • 11:15 ICT • Phu Quoc, Vietnam",
+        amountLabel: "Top up amount",
+        note: "Local travel data package is ready to confirm.",
+      },
+      {
+        status: "Exchange quote ready",
+        title: "Exchange USD to SYP",
+        subtitle: "Rate: 1 USD = 11,059.60 SYP • 1 SYP = 0.00009042 USD",
+        amountLabel: "Exchange amount",
+        note: "Quote uses the current mid-market rate shown by Wise.",
+      },
+    ],
     actions: ["Transfer", "Pay Bills", "Top Up", "Exchange"],
     nav: ["Home", "Cards", "Payments", "Profile"],
   },
@@ -173,9 +203,39 @@ const copy = {
     hideBalance: "إخفاء الرصيد",
     transferReady: "معاينة التحويل جاهزة",
     transferPreviewTitle: "تحويل إلى Phu Quoc Travel",
-    transferPreviewSubtitle: "اليوم، 16:58 • فو كوك، فيتنام",
+    transferPreviewSubtitle: "4 يوليو 2026 • 14:58 بتوقيت فيتنام • فو كوك",
     transferPreviewNote: "راجع التفاصيل قبل المتابعة.",
     previewAmount: "قيمة المعاينة",
+    actionPreviews: [
+      {
+        status: "معاينة التحويل جاهزة",
+        title: "تحويل إلى Phu Quoc Travel",
+        subtitle: "4 يوليو 2026 • 14:58 بتوقيت فيتنام • فو كوك",
+        amountLabel: "قيمة التحويل",
+        note: "راجع بيانات المستفيد والتحويل قبل المتابعة.",
+      },
+      {
+        status: "دفع الفاتورة جاهز",
+        title: "دفع فاتورة فندق فيتنام",
+        subtitle: "4 يوليو 2026 • 13:40 بتوقيت فيتنام • فو كوك",
+        amountLabel: "قيمة الفاتورة",
+        note: "فاتورة الفندق جاهزة للموافقة.",
+      },
+      {
+        status: "الشحن جاهز",
+        title: "شحن بيانات الهاتف في فيتنام",
+        subtitle: "3 يوليو 2026 • 11:15 بتوقيت فيتنام • فو كوك",
+        amountLabel: "قيمة الشحن",
+        note: "باقة بيانات السفر المحلية جاهزة للتأكيد.",
+      },
+      {
+        status: "سعر الصرف جاهز",
+        title: "صرف الدولار إلى الليرة السورية",
+        subtitle: "السعر: 1 USD = 11,059.60 SYP • 1 SYP = 0.00009042 USD",
+        amountLabel: "قيمة الصرف",
+        note: "السعر مبني على سعر Wise الحالي في منتصف السوق.",
+      },
+    ],
     actions: ["تحويل", "فواتير", "شحن", "صرف"],
     nav: ["الرئيسية", "البطاقات", "المدفوعات", "الملف"],
   },
@@ -183,16 +243,16 @@ const copy = {
 
 const account = {
   balance: {
-    usd: "$7,850.00 USD",
+    usd: "$9,222.78 USD",
     syp: "102,000,000 SYP",
   },
   hiddenBalance: "••••••",
   cardBalance: {
-    usd: "$2,385.00 USD",
+    usd: "$2,802.99 USD",
     syp: "31,000,000 SYP",
   },
   monthlyLimit: {
-    usd: "$10,000.00 USD",
+    usd: "$11,754.49 USD",
     syp: "130,000,000 SYP",
   },
   number: "**** 4281",
@@ -203,6 +263,25 @@ const account = {
 const actionIcons = [Send, ReceiptText, Smartphone, Repeat2];
 const navIcons = [Home, CreditCard, WalletCards, UserRound];
 
+const actionAmounts = [
+  {
+    usd: "-$184.60 USD",
+    syp: "-2,041,602 SYP",
+  },
+  {
+    usd: "-$42.50 USD",
+    syp: "-470,033 SYP",
+  },
+  {
+    usd: "-$12.00 USD",
+    syp: "-132,715 SYP",
+  },
+  {
+    usd: "$250.00 USD",
+    syp: "2,764,900 SYP",
+  },
+];
+
 const transactions = [
   {
     id: "phu-quoc-travel",
@@ -210,11 +289,11 @@ const transactions = [
     arTitle: "Phu Quoc Travel",
     subtitle: "Vietnam trip booking",
     arSubtitle: "حجز رحلة فيتنام",
-    date: "Jul 4, 2026 • 16:57",
-    arDate: "4 يوليو 2026 • 16:57",
+    date: "Jul 4, 2026 • 14:35 ICT",
+    arDate: "4 يوليو 2026 • 14:35 بتوقيت فيتنام",
     amount: {
       usd: "-$184.60 USD",
-      syp: "-2,400,000 SYP",
+      syp: "-2,041,602 SYP",
     },
     tone: "debit",
   },
@@ -224,11 +303,39 @@ const transactions = [
     arTitle: "مقهى فو كوك",
     subtitle: "Dining • Vietnam",
     arSubtitle: "مطعم • فيتنام",
-    date: "Jul 4, 2026 • 15:42",
-    arDate: "4 يوليو 2026 • 15:42",
+    date: "Jul 4, 2026 • 12:18 ICT",
+    arDate: "4 يوليو 2026 • 12:18 بتوقيت فيتنام",
     amount: {
       usd: "-$18.50 USD",
-      syp: "-240,000 SYP",
+      syp: "-204,603 SYP",
+    },
+    tone: "debit",
+  },
+  {
+    id: "phu-quoc-vinwonders",
+    title: "VinWonders Phu Quoc",
+    arTitle: "VinWonders Phu Quoc",
+    subtitle: "Tickets • Vietnam",
+    arSubtitle: "تذاكر • فيتنام",
+    date: "Jul 3, 2026 • 13:10 ICT",
+    arDate: "3 يوليو 2026 • 13:10 بتوقيت فيتنام",
+    amount: {
+      usd: "-$64.75 USD",
+      syp: "-716,109 SYP",
+    },
+    tone: "debit",
+  },
+  {
+    id: "phu-quoc-taxi",
+    title: "Phu Quoc Airport Taxi",
+    arTitle: "تاكسي مطار فو كوك",
+    subtitle: "Transport • Vietnam",
+    arSubtitle: "تنقلات • فيتنام",
+    date: "Jul 2, 2026 • 10:45 ICT",
+    arDate: "2 يوليو 2026 • 10:45 بتوقيت فيتنام",
+    amount: {
+      usd: "-$27.30 USD",
+      syp: "-301,927 SYP",
     },
     tone: "debit",
   },
@@ -241,7 +348,7 @@ const transactions = [
     date: "Jul 3, 2026 • 19:20",
     arDate: "3 يوليو 2026 • 19:20",
     amount: {
-      usd: "-$57.70 USD",
+      usd: "-$67.81 USD",
       syp: "-750,000 SYP",
     },
     tone: "debit",
@@ -255,7 +362,7 @@ const transactions = [
     date: "Jul 1, 2026 • 09:00",
     arDate: "1 يوليو 2026 • 09:00",
     amount: {
-      usd: "+$7,850.00 USD",
+      usd: "+$9,222.78 USD",
       syp: "+102,000,000 SYP",
     },
     tone: "credit",
@@ -269,7 +376,7 @@ const transactions = [
     date: "Jun 30, 2026 • 21:14",
     arDate: "30 يونيو 2026 • 21:14",
     amount: {
-      usd: "-$11.90 USD",
+      usd: "-$14.01 USD",
       syp: "-155,000 SYP",
     },
     tone: "debit",
@@ -283,7 +390,7 @@ const transactions = [
     date: "Jun 29, 2026 • 18:06",
     arDate: "29 يونيو 2026 • 18:06",
     amount: {
-      usd: "-$33.85 USD",
+      usd: "-$39.78 USD",
       syp: "-440,000 SYP",
     },
     tone: "debit",
@@ -294,6 +401,7 @@ function App() {
   const [language, setLanguage] = useState("ar");
   const [route, setRoute] = useState(routeFromPathname(window.location.pathname));
   const [balanceVisible, setBalanceVisible] = useState(true);
+  const [selectedAction, setSelectedAction] = useState(null);
   const isArabic = language === "ar";
   const t = copy[language];
   const activePage = routeToPage[route] ?? "home";
@@ -348,6 +456,7 @@ function App() {
               balanceVisible={balanceVisible}
               isArabic={isArabic}
               navigate={navigate}
+              setSelectedAction={setSelectedAction}
               setBalanceVisible={setBalanceVisible}
               t={t}
             />
@@ -359,6 +468,8 @@ function App() {
             <PaymentsScreen
               balanceVisible={balanceVisible}
               isArabic={isArabic}
+              selectedAction={selectedAction}
+              setSelectedAction={setSelectedAction}
               t={t}
             />
           )}
@@ -530,7 +641,14 @@ function PasscodePad({ onDelete, onDigit }) {
   );
 }
 
-function HomeScreen({ balanceVisible, isArabic, navigate, setBalanceVisible, t }) {
+function HomeScreen({
+  balanceVisible,
+  isArabic,
+  navigate,
+  setBalanceVisible,
+  setSelectedAction,
+  t,
+}) {
   return (
     <>
       <div className="relative overflow-hidden bg-bank-ink px-5 pb-6 text-white">
@@ -548,7 +666,8 @@ function HomeScreen({ balanceVisible, isArabic, navigate, setBalanceVisible, t }
         <QuickActions
           isArabic={isArabic}
           onAction={(index) => {
-            if (index === 0) navigate("/payments");
+            setSelectedAction(index);
+            navigate("/payments");
           }}
           t={t}
         />
@@ -582,10 +701,13 @@ function CardsScreen({ balanceVisible, isArabic, t }) {
   );
 }
 
-function PaymentsScreen({ balanceVisible, isArabic, t }) {
-  const [selectedAction, setSelectedAction] = useState(null);
-  const transferSelected = selectedAction === 0;
-
+function PaymentsScreen({
+  balanceVisible,
+  isArabic,
+  selectedAction,
+  setSelectedAction,
+  t,
+}) {
   return (
     <PageShell subtitle={t.paymentsSubtitle} title={t.paymentsTitle}>
       <QuickActions
@@ -603,7 +725,13 @@ function PaymentsScreen({ balanceVisible, isArabic, t }) {
         <Send className="h-4 w-4 rtl-flip" />
         {t.actions[0]}
       </button>
-      {transferSelected && <ActionPreview balanceVisible={balanceVisible} t={t} />}
+      {selectedAction !== null && (
+        <ActionPreview
+          actionIndex={selectedAction}
+          balanceVisible={balanceVisible}
+          t={t}
+        />
+      )}
       <RecentTransactions balanceVisible={balanceVisible} isArabic={isArabic} t={t} />
     </PageShell>
   );
@@ -862,36 +990,40 @@ function QuickActions({ activeIndex = null, isArabic, onAction, t }) {
   );
 }
 
-function ActionPreview({ balanceVisible, t }) {
+function ActionPreview({ actionIndex, balanceVisible, t }) {
+  const preview = t.actionPreviews[actionIndex] ?? t.actionPreviews[0];
+  const amount = actionAmounts[actionIndex] ?? actionAmounts[0];
+  const Icon = actionIcons[actionIndex] ?? Send;
+
   return (
     <section className="rounded-[26px] border border-bank-line bg-white p-4 shadow-sm">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-bank-greenDark">
-            {t.transferReady}
+            {preview.status}
           </p>
-          <h3 className="mt-2 text-base font-semibold">{t.transferPreviewTitle}</h3>
+          <h3 className="mt-2 text-base font-semibold">{preview.title}</h3>
           <p className="mt-1 text-xs leading-5 text-bank-muted">
-            {t.transferPreviewSubtitle}
+            {preview.subtitle}
           </p>
         </div>
         <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-bank-green/[0.16] text-bank-greenDark">
-          <Send className="h-5 w-5 rtl-flip" />
+          <Icon className="h-5 w-5 rtl-flip" />
         </span>
       </div>
 
       <div className="mt-4 rounded-2xl bg-bank-surface p-3">
-        <p className="text-xs text-bank-muted">{t.previewAmount}</p>
+        <p className="text-xs text-bank-muted">{preview.amountLabel}</p>
         <p className="mt-1 text-lg font-semibold">
-          <bdi>{money("-$184.60 USD", balanceVisible)}</bdi>
+          <bdi>{money(amount.usd, balanceVisible)}</bdi>
         </p>
         <p className="mt-1 text-xs font-medium text-bank-greenDark">
-          <bdi>{money("-2,400,000 SYP", balanceVisible)}</bdi>
+          <bdi>{money(amount.syp, balanceVisible)}</bdi>
         </p>
       </div>
 
       <p className="mt-3 text-xs leading-5 text-bank-muted">
-        {t.transferPreviewNote}
+        {preview.note}
       </p>
     </section>
   );
