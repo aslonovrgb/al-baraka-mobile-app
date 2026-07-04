@@ -27,6 +27,58 @@ const routeToPage = {
   "/profile": "profile",
 };
 
+const appRoutes = ["/signin", ...Object.keys(routeToPage)];
+
+function withoutTrailingSlash(pathname) {
+  if (pathname === "/") {
+    return pathname;
+  }
+
+  return pathname.replace(/\/+$/, "");
+}
+
+function routeFromPathname(pathname) {
+  const cleanPath = withoutTrailingSlash(pathname);
+
+  if (cleanPath === "" || cleanPath === "/") {
+    return "/";
+  }
+
+  return (
+    appRoutes.find((route) => cleanPath === route || cleanPath.endsWith(route)) ??
+    "/"
+  );
+}
+
+function basePathFromPathname(pathname) {
+  const cleanPath = withoutTrailingSlash(pathname);
+
+  if (cleanPath === "" || cleanPath === "/") {
+    return "";
+  }
+
+  const route = appRoutes.find(
+    (candidate) => cleanPath === candidate || cleanPath.endsWith(candidate),
+  );
+
+  if (!route) {
+    return cleanPath;
+  }
+
+  const basePath = cleanPath.slice(0, cleanPath.length - route.length);
+  return basePath === "/" ? "" : basePath;
+}
+
+const appBasePath = basePathFromPathname(window.location.pathname);
+
+function browserPathForRoute(route) {
+  if (!appBasePath) {
+    return route;
+  }
+
+  return route === "/" ? `${appBasePath}/` : `${appBasePath}${route}`;
+}
+
 const pageToRoute = {
   home: "/app",
   cards: "/cards",
@@ -169,7 +221,7 @@ const transactions = [
 
 function App() {
   const [language, setLanguage] = useState("ar");
-  const [route, setRoute] = useState(window.location.pathname);
+  const [route, setRoute] = useState(routeFromPathname(window.location.pathname));
   const [balanceVisible, setBalanceVisible] = useState(true);
   const isArabic = language === "ar";
   const t = copy[language];
@@ -177,16 +229,17 @@ function App() {
   const isSignIn = route === "/signin";
 
   useEffect(() => {
-    const handlePopState = () => setRoute(window.location.pathname);
+    const handlePopState = () =>
+      setRoute(routeFromPathname(window.location.pathname));
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
   useEffect(() => {
-    if (window.location.pathname === "/") {
+    if (route === "/") {
       navigate("/signin", { replace: true });
     }
-  }, []);
+  }, [route]);
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -195,13 +248,16 @@ function App() {
   }, [isArabic, language, t.bankName]);
 
   function navigate(path, options = {}) {
-    if (window.location.pathname !== path) {
+    const browserPath = browserPathForRoute(path);
+
+    if (window.location.pathname !== browserPath) {
       if (options.replace) {
-        window.history.replaceState(null, "", path);
+        window.history.replaceState(null, "", browserPath);
       } else {
-        window.history.pushState(null, "", path);
+        window.history.pushState(null, "", browserPath);
       }
     }
+
     setRoute(path);
   }
 

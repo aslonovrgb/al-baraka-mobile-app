@@ -2,7 +2,7 @@
   "name": "Al Baraka Mobile Banking",
   "short_name": "Al Baraka",
   "description": "Al Baraka mobile banking app.",
-  "start_url": "./signin",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
