@@ -1,0 +1,21 @@
+{
+  "name": "sham-digital-bank-mobile-mvp",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build && cp dist/index.html dist/404.html && touch dist/.nojekyll",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.0.3",
+    "autoprefixer": "^10.5.2",
+    "lucide-react": "^1.23.0",
+    "postcss": "^8.5.16",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "tailwindcss": "^3.4.17",
+    "vite": "^8.1.3"
+  }
+}
