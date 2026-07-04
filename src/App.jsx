@@ -126,11 +126,11 @@ const copy = {
     signOut: "Sign out",
     showBalance: "Show balance",
     hideBalance: "Hide balance",
-    balanceDetails: "Balance details",
-    salaryPosted: "Salary posted",
-    spentAfterSalary: "Spent after salary",
-    currentAvailable: "Current available",
-    exchangeRate: "Wise rate",
+    balanceDetails: "Exchange rates",
+    usdToSyp: "USD to SYP",
+    sypToUsd: "SYP to USD",
+    availableBalance: "Available balance",
+    rateNote: "Indicative demo rate",
     transferReady: "Transfer preview ready",
     transferPreviewTitle: "Transfer to Phu Quoc Travel",
     transferPreviewSubtitle: "Jul 4, 2026 • 14:58 ICT • Phu Quoc, Vietnam",
@@ -163,7 +163,7 @@ const copy = {
         title: "Exchange USD to SYP",
         subtitle: "Rate: 1 USD = 11,059.60 SYP • 1 SYP = 0.00009042 USD",
         amountLabel: "Exchange amount",
-        note: "Quote uses the current mid-market rate shown by Wise.",
+        note: "Quote uses an indicative mid-market demo rate.",
       },
     ],
     actions: ["Transfer", "Pay Bills", "Top Up", "Exchange"],
@@ -206,11 +206,11 @@ const copy = {
     signOut: "تسجيل الخروج",
     showBalance: "إظهار الرصيد",
     hideBalance: "إخفاء الرصيد",
-    balanceDetails: "تفاصيل الرصيد",
-    salaryPosted: "إيداع الراتب",
-    spentAfterSalary: "المصروفات بعد الراتب",
-    currentAvailable: "الرصيد الحالي",
-    exchangeRate: "سعر Wise",
+    balanceDetails: "أسعار الصرف",
+    usdToSyp: "الدولار إلى الليرة",
+    sypToUsd: "الليرة إلى الدولار",
+    availableBalance: "الرصيد المتاح",
+    rateNote: "سعر تقريبي للعرض",
     transferReady: "معاينة التحويل جاهزة",
     transferPreviewTitle: "تحويل إلى Phu Quoc Travel",
     transferPreviewSubtitle: "4 يوليو 2026 • 14:58 بتوقيت فيتنام • فو كوك",
@@ -243,7 +243,7 @@ const copy = {
         title: "صرف الدولار إلى الليرة السورية",
         subtitle: "السعر: 1 USD = 11,059.60 SYP • 1 SYP = 0.00009042 USD",
         amountLabel: "قيمة الصرف",
-        note: "السعر مبني على سعر Wise الحالي في منتصف السوق.",
+        note: "السعر تقريبي ومخصص للعرض التجريبي.",
       },
     ],
     actions: ["تحويل", "فواتير", "شحن", "صرف"],
@@ -257,15 +257,8 @@ const account = {
     syp: "98,735,759 SYP",
   },
   hiddenBalance: "••••••",
-  salaryDeposit: {
-    usd: "$9,222.78 USD",
-    syp: "102,000,000 SYP",
-  },
-  spentAfterSalary: {
-    usd: "-$295.15 USD",
-    syp: "-3,264,241 SYP",
-  },
   exchangeRate: "1 USD = 11,059.60 SYP",
+  reverseExchangeRate: "1 SYP = 0.00009042 USD",
   cardBalance: {
     usd: "$2,802.99 USD",
     syp: "31,000,000 SYP",
@@ -948,19 +941,19 @@ function BalanceCard({ balanceVisible, setBalanceVisible, t }) {
       {detailsOpen && (
         <div className="mt-4 rounded-[22px] border border-white/[0.12] bg-white/[0.08] p-3">
           <BalanceDetailRow
-            label={t.salaryPosted}
-            value={moneyPair(account.salaryDeposit, balanceVisible)}
+            label={t.usdToSyp}
+            value={account.exchangeRate}
           />
           <BalanceDetailRow
-            label={t.spentAfterSalary}
-            value={moneyPair(account.spentAfterSalary, balanceVisible)}
+            label={t.sypToUsd}
+            value={account.reverseExchangeRate}
           />
           <BalanceDetailRow
-            label={t.currentAvailable}
+            label={t.availableBalance}
             value={moneyPair(account.balance, balanceVisible)}
           />
           <div className="mt-3 rounded-2xl bg-bank-gold/[0.12] px-3 py-2 text-xs font-semibold text-bank-gold">
-            {t.exchangeRate}: <bdi>{account.exchangeRate}</bdi>
+            {t.rateNote}
           </div>
         </div>
       )}
