@@ -104,8 +104,8 @@ const copy = {
     initials: "ZB",
     accountStatus: "Main account",
     totalBalance: "Total balance",
-    available: "Available in SYP",
-    accountType: "Current account",
+    available: "Available in USD and Syrian pounds",
+    accountType: "USD / SYP current account",
     quickActions: "Quick actions",
     myCard: "My card",
     recent: "Recent transactions",
@@ -126,6 +126,11 @@ const copy = {
     signOut: "Sign out",
     showBalance: "Show balance",
     hideBalance: "Hide balance",
+    transferReady: "Transfer preview ready",
+    transferPreviewTitle: "Transfer to Phu Quoc Travel",
+    transferPreviewSubtitle: "Today, 16:58 • Phu Quoc, Vietnam",
+    transferPreviewNote: "Review details before continuing.",
+    previewAmount: "Preview amount",
     actions: ["Transfer", "Pay Bills", "Top Up", "Exchange"],
     nav: ["Home", "Cards", "Payments", "Profile"],
   },
@@ -144,8 +149,8 @@ const copy = {
     initials: "ZB",
     accountStatus: "الحساب الرئيسي",
     totalBalance: "الرصيد الإجمالي",
-    available: "متاح بالليرة السورية",
-    accountType: "حساب جار",
+    available: "متاح بالدولار والليرة السورية",
+    accountType: "حساب جار بالدولار والليرة",
     quickActions: "إجراءات سريعة",
     myCard: "بطاقتي",
     recent: "آخر العمليات",
@@ -166,16 +171,30 @@ const copy = {
     signOut: "تسجيل الخروج",
     showBalance: "إظهار الرصيد",
     hideBalance: "إخفاء الرصيد",
+    transferReady: "معاينة التحويل جاهزة",
+    transferPreviewTitle: "تحويل إلى Phu Quoc Travel",
+    transferPreviewSubtitle: "اليوم، 16:58 • فو كوك، فيتنام",
+    transferPreviewNote: "راجع التفاصيل قبل المتابعة.",
+    previewAmount: "قيمة المعاينة",
     actions: ["تحويل", "فواتير", "شحن", "صرف"],
     nav: ["الرئيسية", "البطاقات", "المدفوعات", "الملف"],
   },
 };
 
 const account = {
-  balance: "102,000,000 SYP",
-  hiddenBalance: "•••••••• SYP",
-  cardBalance: "31,000,000 SYP",
-  monthlyLimit: "130,000,000 SYP",
+  balance: {
+    usd: "$7,850.00 USD",
+    syp: "102,000,000 SYP",
+  },
+  hiddenBalance: "••••••",
+  cardBalance: {
+    usd: "$2,385.00 USD",
+    syp: "31,000,000 SYP",
+  },
+  monthlyLimit: {
+    usd: "$10,000.00 USD",
+    syp: "130,000,000 SYP",
+  },
   number: "**** 4281",
   cardNumber: "5284 **** **** 9012",
   expiry: "09/29",
@@ -186,35 +205,87 @@ const navIcons = [Home, CreditCard, WalletCards, UserRound];
 
 const transactions = [
   {
+    id: "phu-quoc-travel",
+    title: "Phu Quoc Travel",
+    arTitle: "Phu Quoc Travel",
+    subtitle: "Vietnam trip booking",
+    arSubtitle: "حجز رحلة فيتنام",
+    date: "Jul 4, 2026 • 16:57",
+    arDate: "4 يوليو 2026 • 16:57",
+    amount: {
+      usd: "-$184.60 USD",
+      syp: "-2,400,000 SYP",
+    },
+    tone: "debit",
+  },
+  {
+    id: "phu-quoc-cafe",
+    title: "Phu Quoc Cafe",
+    arTitle: "مقهى فو كوك",
+    subtitle: "Dining • Vietnam",
+    arSubtitle: "مطعم • فيتنام",
+    date: "Jul 4, 2026 • 15:42",
+    arDate: "4 يوليو 2026 • 15:42",
+    amount: {
+      usd: "-$18.50 USD",
+      syp: "-240,000 SYP",
+    },
+    tone: "debit",
+  },
+  {
+    id: "damascus-market",
     title: "Damascus Market",
     arTitle: "سوق دمشق",
     subtitle: "Groceries",
     arSubtitle: "مشتريات يومية",
-    amount: "-750,000 SYP",
+    date: "Jul 3, 2026 • 19:20",
+    arDate: "3 يوليو 2026 • 19:20",
+    amount: {
+      usd: "-$57.70 USD",
+      syp: "-750,000 SYP",
+    },
     tone: "debit",
   },
   {
+    id: "salary-deposit",
     title: "Salary Deposit",
     arTitle: "إيداع راتب",
     subtitle: "Main account",
     arSubtitle: "الحساب الرئيسي",
-    amount: "+102,000,000 SYP",
+    date: "Jul 1, 2026 • 09:00",
+    arDate: "1 يوليو 2026 • 09:00",
+    amount: {
+      usd: "+$7,850.00 USD",
+      syp: "+102,000,000 SYP",
+    },
     tone: "credit",
   },
   {
+    id: "mobile-top-up",
     title: "Mobile Top Up",
     arTitle: "شحن رصيد",
     subtitle: "MTN Syria",
     arSubtitle: "إعادة شحن",
-    amount: "-155,000 SYP",
+    date: "Jun 30, 2026 • 21:14",
+    arDate: "30 يونيو 2026 • 21:14",
+    amount: {
+      usd: "-$11.90 USD",
+      syp: "-155,000 SYP",
+    },
     tone: "debit",
   },
   {
+    id: "card-payment",
     title: "Card Payment",
     arTitle: "دفع بالبطاقة",
     subtitle: "Pharmacy",
     arSubtitle: "صيدلية",
-    amount: "-440,000 SYP",
+    date: "Jun 29, 2026 • 18:06",
+    arDate: "29 يونيو 2026 • 18:06",
+    amount: {
+      usd: "-$33.85 USD",
+      syp: "-440,000 SYP",
+    },
     tone: "debit",
   },
 ];
@@ -276,6 +347,7 @@ function App() {
             <HomeScreen
               balanceVisible={balanceVisible}
               isArabic={isArabic}
+              navigate={navigate}
               setBalanceVisible={setBalanceVisible}
               t={t}
             />
@@ -287,7 +359,6 @@ function App() {
             <PaymentsScreen
               balanceVisible={balanceVisible}
               isArabic={isArabic}
-              navigate={navigate}
               t={t}
             />
           )}
@@ -459,7 +530,7 @@ function PasscodePad({ onDelete, onDigit }) {
   );
 }
 
-function HomeScreen({ balanceVisible, isArabic, setBalanceVisible, t }) {
+function HomeScreen({ balanceVisible, isArabic, navigate, setBalanceVisible, t }) {
   return (
     <>
       <div className="relative overflow-hidden bg-bank-ink px-5 pb-6 text-white">
@@ -474,7 +545,13 @@ function HomeScreen({ balanceVisible, isArabic, setBalanceVisible, t }) {
       </div>
 
       <div className="space-y-5 px-5 pb-6 pt-5">
-        <QuickActions isArabic={isArabic} t={t} />
+        <QuickActions
+          isArabic={isArabic}
+          onAction={(index) => {
+            if (index === 0) navigate("/payments");
+          }}
+          t={t}
+        />
         <BankCardPreview t={t} />
         <RecentTransactions balanceVisible={balanceVisible} isArabic={isArabic} t={t} />
       </div>
@@ -488,8 +565,16 @@ function CardsScreen({ balanceVisible, isArabic, t }) {
       <BankCardPreview t={t} />
       <MetricGrid
         items={[
-          { label: t.cardBalance, value: money(account.cardBalance, balanceVisible) },
-          { label: t.spendingLimit, value: money(account.monthlyLimit, balanceVisible) },
+          {
+            detail: money(account.cardBalance.syp, balanceVisible),
+            label: t.cardBalance,
+            value: money(account.cardBalance.usd, balanceVisible),
+          },
+          {
+            detail: money(account.monthlyLimit.syp, balanceVisible),
+            label: t.spendingLimit,
+            value: money(account.monthlyLimit.usd, balanceVisible),
+          },
         ]}
       />
       <RecentTransactions balanceVisible={balanceVisible} isArabic={isArabic} t={t} />
@@ -497,19 +582,28 @@ function CardsScreen({ balanceVisible, isArabic, t }) {
   );
 }
 
-function PaymentsScreen({ balanceVisible, isArabic, navigate, t }) {
+function PaymentsScreen({ balanceVisible, isArabic, t }) {
+  const [selectedAction, setSelectedAction] = useState(null);
+  const transferSelected = selectedAction === 0;
+
   return (
     <PageShell subtitle={t.paymentsSubtitle} title={t.paymentsTitle}>
-      <QuickActions isArabic={isArabic} t={t} />
+      <QuickActions
+        activeIndex={selectedAction}
+        isArabic={isArabic}
+        onAction={setSelectedAction}
+        t={t}
+      />
       <MainAccountCard balanceVisible={balanceVisible} t={t} />
       <button
         type="button"
-        className="flex w-full items-center justify-center gap-2 rounded-[24px] bg-gradient-to-br from-bank-green to-bank-greenDark px-5 py-4 text-sm font-semibold text-white shadow-lg shadow-bank-greenDark/15"
-        onClick={() => navigate("/app")}
+        className="flex w-full items-center justify-center gap-2 rounded-[24px] bg-gradient-to-br from-bank-green to-bank-greenDark px-5 py-4 text-sm font-semibold text-white shadow-lg shadow-bank-greenDark/15 transition active:scale-[0.98]"
+        onClick={() => setSelectedAction(0)}
       >
         <Send className="h-4 w-4 rtl-flip" />
         {t.actions[0]}
       </button>
+      {transferSelected && <ActionPreview balanceVisible={balanceVisible} t={t} />}
       <RecentTransactions balanceVisible={balanceVisible} isArabic={isArabic} t={t} />
     </PageShell>
   );
@@ -543,7 +637,7 @@ function ProfileScreen({
         icon={balanceVisible ? Eye : EyeOff}
         label={balanceVisible ? t.hideBalance : t.showBalance}
         onClick={() => setBalanceVisible((visible) => !visible)}
-        value={money(account.balance, balanceVisible)}
+        value={moneyPair(account.balance, balanceVisible)}
       />
       <SettingsRow icon={ShieldCheck} label={t.security} value={t.secureSession} />
       <section className="rounded-[26px] border border-bank-line bg-white p-4 shadow-sm">
@@ -672,9 +766,12 @@ function BalanceCard({ balanceVisible, setBalanceVisible, t }) {
         <div>
           <p className="text-sm text-white/[0.62]">{t.totalBalance}</p>
           <p className="mt-2 whitespace-nowrap text-[30px] font-semibold leading-tight tracking-normal">
-            <bdi>{money(account.balance, balanceVisible)}</bdi>
+            <bdi>{money(account.balance.usd, balanceVisible)}</bdi>
           </p>
-          <p className="mt-2 text-sm font-medium text-bank-gold">
+          <p className="mt-1 text-sm font-semibold text-white/[0.74]">
+            <bdi>{money(account.balance.syp, balanceVisible)}</bdi>
+          </p>
+          <p className="mt-2 text-xs font-medium text-bank-gold">
             {t.available}
           </p>
         </div>
@@ -728,7 +825,7 @@ function MainAccountCard({ balanceVisible, t }) {
   );
 }
 
-function QuickActions({ isArabic, t }) {
+function QuickActions({ activeIndex = null, isArabic, onAction, t }) {
   return (
     <section className="rounded-[26px] border border-bank-line bg-white p-4 shadow-sm">
       <div className="mb-4 flex items-center justify-between">
@@ -744,7 +841,12 @@ function QuickActions({ isArabic, t }) {
             <button
               key={label}
               type="button"
-              className="min-h-[86px] rounded-2xl border border-bank-line bg-bank-surface px-2 py-3 text-center transition active:scale-[0.98]"
+              className={`min-h-[86px] rounded-2xl border px-2 py-3 text-center transition active:scale-[0.98] ${
+                activeIndex === index
+                  ? "border-bank-greenDark bg-bank-green/[0.16]"
+                  : "border-bank-line bg-bank-surface"
+              }`}
+              onClick={() => onAction?.(index)}
             >
               <span className="mx-auto grid h-10 w-10 place-items-center rounded-full bg-bank-green/[0.22] text-bank-greenDark">
                 <Icon className="h-4 w-4" />
@@ -756,6 +858,41 @@ function QuickActions({ isArabic, t }) {
           );
         })}
       </div>
+    </section>
+  );
+}
+
+function ActionPreview({ balanceVisible, t }) {
+  return (
+    <section className="rounded-[26px] border border-bank-line bg-white p-4 shadow-sm">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-bank-greenDark">
+            {t.transferReady}
+          </p>
+          <h3 className="mt-2 text-base font-semibold">{t.transferPreviewTitle}</h3>
+          <p className="mt-1 text-xs leading-5 text-bank-muted">
+            {t.transferPreviewSubtitle}
+          </p>
+        </div>
+        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-bank-green/[0.16] text-bank-greenDark">
+          <Send className="h-5 w-5 rtl-flip" />
+        </span>
+      </div>
+
+      <div className="mt-4 rounded-2xl bg-bank-surface p-3">
+        <p className="text-xs text-bank-muted">{t.previewAmount}</p>
+        <p className="mt-1 text-lg font-semibold">
+          <bdi>{money("-$184.60 USD", balanceVisible)}</bdi>
+        </p>
+        <p className="mt-1 text-xs font-medium text-bank-greenDark">
+          <bdi>{money("-2,400,000 SYP", balanceVisible)}</bdi>
+        </p>
+      </div>
+
+      <p className="mt-3 text-xs leading-5 text-bank-muted">
+        {t.transferPreviewNote}
+      </p>
     </section>
   );
 }
@@ -804,7 +941,7 @@ function RecentTransactions({ balanceVisible, isArabic, t }) {
         {transactions.map((transaction) => (
           <TransactionRow
             balanceVisible={balanceVisible}
-            key={transaction.title}
+            key={transaction.id}
             isArabic={isArabic}
             transaction={transaction}
           />
@@ -817,6 +954,7 @@ function RecentTransactions({ balanceVisible, isArabic, t }) {
 function TransactionRow({ balanceVisible, isArabic, transaction }) {
   const title = isArabic ? transaction.arTitle : transaction.title;
   const subtitle = isArabic ? transaction.arSubtitle : transaction.subtitle;
+  const date = isArabic ? transaction.arDate : transaction.date;
   const isCredit = transaction.tone === "credit";
 
   return (
@@ -838,15 +976,23 @@ function TransactionRow({ balanceVisible, isArabic, transaction }) {
         <div className="min-w-0">
           <p className="truncate text-sm font-semibold">{title}</p>
           <p className="mt-1 truncate text-xs text-bank-muted">{subtitle}</p>
+          <p className="mt-1 truncate text-[11px] font-medium text-bank-muted/75">
+            {date}
+          </p>
         </div>
       </div>
-      <p
-        className={`shrink-0 text-xs font-semibold ${
-          isCredit ? "text-bank-greenDark" : "text-bank-ink"
-        }`}
-      >
-        <bdi>{money(transaction.amount, balanceVisible)}</bdi>
-      </p>
+      <div className="shrink-0 text-end">
+        <p
+          className={`whitespace-nowrap text-xs font-semibold ${
+            isCredit ? "text-bank-greenDark" : "text-bank-ink"
+          }`}
+        >
+          <bdi>{money(transaction.amount.usd, balanceVisible)}</bdi>
+        </p>
+        <p className="mt-1 whitespace-nowrap text-[10px] font-semibold text-bank-muted">
+          <bdi>{money(transaction.amount.syp, balanceVisible)}</bdi>
+        </p>
+      </div>
     </div>
   );
 }
@@ -863,6 +1009,11 @@ function MetricGrid({ items }) {
           <p className="mt-2 text-lg font-semibold">
             <bdi>{item.value}</bdi>
           </p>
+          {item.detail && (
+            <p className="mt-1 text-xs font-medium text-bank-greenDark">
+              <bdi>{item.detail}</bdi>
+            </p>
+          )}
         </div>
       ))}
     </section>
@@ -924,6 +1075,12 @@ function BottomNavigation({ activePage, navigate, t }) {
 
 function money(value, visible) {
   return visible ? value : account.hiddenBalance;
+}
+
+function moneyPair(value, visible) {
+  return visible
+    ? `${value.usd} / ${value.syp}`
+    : `${account.hiddenBalance} / ${account.hiddenBalance}`;
 }
 
 export default App;
